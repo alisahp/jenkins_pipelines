@@ -1,9 +1,15 @@
 node{
-    stage("stage1"){
-        git@github.com:alisahp/terraform-iaac-eks-burak.git
-        
+    stage("Pull Repo"){
+        git 'https://github.com/bkarakas/terraform-iaac-eks-burak'
     }
-        stage("stage1"){
-        echo "hello"   
+    stage("stage1"){
+        echo "Hello"
+    }
+    stage("stage1"){
+        echo "Hello"
+    }
+    stage("stage1"){
+        echo "Hello"
+
     }
 }
