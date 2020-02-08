@@ -3,22 +3,20 @@ node{
         git 'https://github.com/alisahp/terraform-iaac-eks-burak.git'
     }
     stage("Download Terraform"){
-        ws {
+        ws ("tmp/") {
             sh "terraform version"
             sh "wget https://releases.hashicorp.com/terraform/0.12.19/terraform_0.12.19_linux_amd64.zip"
             sh "unzip -o terraform_0.12.19_linux_amd64.zip"
             sh "./terraform version"}
     }
     stage("Set Backend"){
-        ws ("terraform-iaac-eks-burak"){
-            pwd()
-            sh "ls -l"
-            sh "ls -l ../"
-            //sh "source setenv.sh configurations/dev/us-west-2/dev.tfvars"
+        ws ("tmp/"){
+            sh "./terraform init"
         }
     }
-    stage("stage1"){
-        echo "Hello"
-
+    stage("Plan"){
+        ws ("tmp/") {
+            sh "./terraform plan -var-file configurations/dev/us-west-2/dev.tfvars"
+        }
     }
 }
