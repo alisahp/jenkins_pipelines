@@ -5,7 +5,7 @@ node {
 
 
     stage ("Pull Repo"){
-        git 'git@github.com:farrukh90/packer.git'
+        git 'https://github.com/alisahp/jenkins_pipelines.git'
     }
     stage ("Build Image"){
         sh "packer version"
