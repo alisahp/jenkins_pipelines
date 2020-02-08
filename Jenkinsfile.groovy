@@ -22,6 +22,6 @@ node {
         from: '', 
         replyTo: '', 
         subject: "${TOOL_TO_PROVISION} has been built", 
-        to: 'alisevhp@gmail.com'
+        to: "${EMAIL_TO_SEND}"
     }
 }
