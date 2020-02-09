@@ -29,9 +29,9 @@ node {
 		timestamps {
 			ws{
 				sh '''
-					ssh centos@${ENVIR} sudo yum install epel-release -y
-					ssh centos@${ENVIR} sudo yum install python-pip -y 
-					ssh centos@${ENVIR} sudo pip install Flask
+					ssh root@${ENVIR} sudo yum install epel-release -y
+					ssh root@${ENVIR} sudo yum install python-pip -y 
+					ssh root@${ENVIR} sudo pip install Flask
 					'''
 		}
 	}
@@ -40,7 +40,7 @@ node {
 		timestamps {
 			ws {
 				sh '''
-					scp -r * centos@${ENVIR}:/tmp
+					scp -r * root@${ENVIR}:/tmp
 					'''
 		}
 	}
@@ -49,7 +49,7 @@ node {
 		timestamps {
 			ws {
 				sh '''
-					ssh centos@${ENVIR} nohup python /tmp/artemis.py  &
+					ssh root@${ENVIR} nohup python /tmp/artemis.py  &
 					'''
 		}
 	}
