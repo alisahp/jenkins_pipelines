@@ -12,10 +12,10 @@ node {
 	name: 'Version'), 
 	choice(choices: 
 	[
-		'dev1.mybestsea.com', 
-		'qa1.mybestsea.com', 
-		'stage1.mybestsea.com', 
-		'prod1.mybestsea.com'], 
+		'dev1.acirrustech.com', 
+		'qa1.acirrustech.com', 
+		'stage1.acirrustech.com', 
+		'prod1.acirrustech.com'], 
 	description: 'Please provide an environment to build the application', 
 	name: 'ENVIR')])])
 	stage("Stage1"){
@@ -29,9 +29,9 @@ node {
 		timestamps {
 			ws{
 				sh '''
-					ssh root@${ENVIR} sudo yum install epel-release -y
-					ssh root@${ENVIR} sudo yum install python-pip -y 
-					ssh root@${ENVIR} sudo pip install Flask
+					ssh centos@${ENVIR} sudo yum install epel-release -y
+					ssh centos@${ENVIR} sudo yum install python-pip -y 
+					ssh centos@${ENVIR} sudo pip install Flask
 					'''
 		}
 	}
@@ -40,7 +40,7 @@ node {
 		timestamps {
 			ws {
 				sh '''
-					scp -r * root@${ENVIR}:/tmp
+					scp -r * centos@${ENVIR}:/tmp
 					'''
 		}
 	}
@@ -49,7 +49,7 @@ node {
 		timestamps {
 			ws {
 				sh '''
-					ssh root@${ENVIR} nohup python /tmp/artemis.py  &
+					ssh centos@${ENVIR} nohup python /tmp/artemis.py  &
 					'''
 		}
 	}
