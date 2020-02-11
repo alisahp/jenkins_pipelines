@@ -22,6 +22,7 @@ node{
             }
         }
     }
+    // Needed for Unit QA - Test
     stage("Download kubectl"){
         ws("tmp/"){
             def exists = fileExists '/tmp/kubectl'
